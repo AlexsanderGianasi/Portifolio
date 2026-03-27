@@ -53,3 +53,25 @@ a{
 .navbar ul li.ativo a{
     color: #7F00FF;
 }
+
+.inicio{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    padding: 60px 9% 0;
+    color: #fff;
+}
+
+.inicio-info h1{
+    font-size: 50px;
+}
+
+.inicio-info h2{
+    font-size: 32px;
+    margin: -10px 0;
+}
+
+.inicio-info p{
+    font-size: 16px;
+    margin: 10px 0 25px;
+}
