@@ -59,14 +59,14 @@ a{
 }
 
 .navbar ul li:hover a,
-.navbar ul li.ativo a{
+.navbar ul li a.active{
     color: #8b1ff8;
 }
 
 .inicio{
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 80px;
     height: 100vh;
     padding: 60px 9% 0;
     color: #fff;
@@ -163,18 +163,19 @@ a{
     box-sizing: border-box;
 }
 
-.inicio-info .btn-sci .sci a{
+.inicio-info .btn-sci .sci i{
     display: inline-flex;
-    padding: 8px 8px 1.5px 8px;
-    border: 2px solid #8b1ff8;
-    border-radius: 50%;
-    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
     color: #8b1ff8;
-    margin: 0 8px;
+    margin-left: 10px;
     transition: .5s;
+    border-radius: 50%;
+    padding: 2px;
 }
 
-.inicio-info .btn-sci .sci a:hover{
+.inicio-info .btn-sci .sci i:hover{
     background: #8b1ff8;
     color: #1f242d;
     box-shadow: 0 0 10px #8b1ff8;
