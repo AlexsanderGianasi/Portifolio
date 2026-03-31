@@ -66,7 +66,7 @@ a{
 .inicio{
     display: flex;
     align-items: center;
-    gap: 80px;
+    gap: 180px;
     height: 100vh;
     padding: 60px 9% 0;
     color: #fff;
@@ -88,41 +88,24 @@ a{
 
 .inicio-info h2 span{
     position: relative;
-    display: inline-block;
-    color: transparent;
-    -webkit-text-stroke: 1.3px #8b1ff8;
+    display: inline;
+    color: #8b1ff8;
     animation: display-text 16s linear infinite;
     animation-delay: calc(-4s * var(--i));
 }
 
 @keyframes display-text{
-    25%,
+    25%{
+        display: none;
+        opacity: 0;
+    }
+    50%{
+        display: none;
+        opacity: 1;
+    }
     100%{
         display: none;
-    }
-}
-
-.inicio-info h2 span:before{
-    content: attr(data-text);
-    position: absolute;
-    width: 0;
-    border-right: 2px solid #8b1ff8;
-    color: #8b1ff8;
-    white-space: nowrap;
-    overflow: hidden;
-    animation: fill-text 4s linear infinite;
-}
-
-@keyframes fill-text{
-
-    10%,
-    100%{
-        width: 0;
-    }
-
-    70%,
-    90%{
-        width: 100%;
+        opacity: 0;
     }
 }
 
@@ -183,8 +166,8 @@ a{
 
 .inicio-img .img-box{
     position: relative;
-    width: 32vw;
-    height: 32vw;
+    width: 24vw;
+    height: 24vw;
     border-radius: 50%;
     padding: 5px;
     display: flex;
