@@ -87,26 +87,9 @@ a{
 }
 
 .inicio-info h2 span{
-    position: relative;
-    display: inline;
     color: #8b1ff8;
-    animation: display-text 16s linear infinite;
-    animation-delay: calc(-4s * var(--i));
-}
-
-@keyframes display-text{
-    25%{
-        display: none;
-        opacity: 0;
-    }
-    50%{
-        display: none;
-        opacity: 1;
-    }
-    100%{
-        display: none;
-        opacity: 0;
-    }
+    opacity: 0;
+    transition: opacity 0.8s ease, text-shadow 0.8s ease;
 }
 
 .inicio-info p{
@@ -242,3 +225,4 @@ a{
         transform: translateY(0%);
     }
 }
+
