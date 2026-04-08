@@ -8,15 +8,13 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
-
 a{
     text-decoration: none;
     color: #fff;
 }
 
 .navbar{
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     width: 100%;
@@ -226,3 +224,7 @@ a{
     }
 }
 
+.content{
+    height: 100vh;
+    background-color: #1f242d;
+}
