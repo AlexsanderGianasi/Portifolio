@@ -251,6 +251,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 #about-sub button{
@@ -259,4 +260,25 @@ a{
    border: none;
    border-radius: 10px;
    margin: 0 10px 15px 0;
+}
+
+#about-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 200px;
+}
+
+#about-content iframe{
+    width: 685px;
+    height: 385px;
+}
+
+#about-text{
+    width: 30vw;
+}
+
+#about-sub-text{
+    text-align: center;
+    margin: 70px;
 }
