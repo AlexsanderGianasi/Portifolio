@@ -267,6 +267,7 @@ a{
     align-items: center;
     justify-content: center;
     gap: 200px;
+    color: #fff;
 }
 
 #about-content iframe{
@@ -280,5 +281,5 @@ a{
 
 #about-sub-text{
     text-align: center;
-    margin: 70px;
+    margin: 100px;
 }
