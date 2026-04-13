@@ -38,3 +38,8 @@ setInterval(showText, 5000);
 
 // inicia na hora
 showText();
+
+window.addEventListener("scroll", function(){
+  let navbar = document.querySelector('.navbar')
+  navbar.classList.toggle('roll', window.scrollY > 0)
+})

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --bg: #0f0f1a;
+  --bg: #1f242d;
   --card: #1a1a2e;
   --primary: #8b1ff8; /* roxo */
   --text: #e5e7eb;
@@ -29,11 +29,11 @@ a{
 /* Home */
 
 .navbar{
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
-    padding: 24px 9%;
+    padding: 10px 9%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,6 +43,14 @@ a{
     animation: show-content 1.5s linear forwards;
     animation-delay: 1.2s;
 } 
+
+.roll{
+    background: #1c2029e1;
+    transition: 1s;
+    border-radius: 0 0 20px 20px;
+    backdrop-filter: blur(10px);
+        box-shadow: #8000ff57 3px -7px 26px 0px;
+}
 
 @keyframes show-content{
     100%{
@@ -251,7 +259,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    box-sizing: border-box;
 }
 
 #about-sub button{
@@ -267,7 +275,7 @@ a{
     align-items: center;
     justify-content: center;
     gap: 200px;
-    color: #fff;
+    color: var(--text);
 }
 
 #about-content iframe{
@@ -281,5 +289,6 @@ a{
 
 #about-sub-text{
     text-align: center;
-    margin: 100px;
+    margin: 60px;
+    color: var(--text);
 }
