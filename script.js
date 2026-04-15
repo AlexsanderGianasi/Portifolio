@@ -43,3 +43,8 @@ window.addEventListener("scroll", function(){
   let navbar = document.querySelector('.navbar')
   navbar.classList.toggle('roll', window.scrollY > 0)
 })
+
+document.querySelector(".contact-form").addEventListener("submit", e => {
+  e.preventDefault();
+  alert("Message sent!");
+});

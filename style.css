@@ -441,6 +441,7 @@ a{
   border-radius: 16px;
   padding: 2rem;
   transition: 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .service-card:hover {
@@ -470,7 +471,7 @@ a{
   margin-bottom: 25px;
   font-size: 0.8rem;
   color: #7c3aed;
-text-align: center;
+    text-align: center;
 }
 
 #services-sub {
@@ -535,3 +536,53 @@ text-align: center;
 }
 
 
+/* contact */
+
+#contact {
+    padding: 100px 10%;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-form {
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+
+  background: rgba(255,255,255,0.05);
+  color: white;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border: 1px solid #7c3aed;
+}
+.contact-form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #7c3aed;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+}
