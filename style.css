@@ -107,6 +107,15 @@ a{
     margin: -10px 0;
 }
 
+[data-i18n="subtitle"] {
+  color: var(--text) !important;
+  font-size: 40px !important;
+  opacity: 1 !important;
+  display: inline !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
 .inicio-info h2 span{
     color: #8b1ff8;
     opacity: 0;

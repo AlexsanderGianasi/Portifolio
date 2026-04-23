@@ -7,39 +7,132 @@ function linkAction(){
 }
 navLink.forEach(n => n.addEventListener('click', linkAction));
 
-const texts = [
-  "JavaScript Developer",
-  "Front-end Developer",
-  "Problem Solver",
-  "Software Engineering Student",
-];
+// Translate
 
+const translations = {
+  en: {
+    logo: "Portifolio",
+    navh: "Home",
+    nava: "About",
+    navp: "Portfolio",
+    navs: "Services",
+    navc: "Contact",
+    title: "Alexsander Gianasi",
+    subtitle: "I'm a",
+    roles: [
+      "JavaScript Developer",
+      "Front-end Developer",
+      "Problem Solver",
+      "Software Engineering Student"
+    ],
+    description: "Front-end developer focused on building fast, modern, and user-centered web experiences. <br> I use JavaScript to create intuitive and high-performance interfaces that combine clean design with real usability. <br> With hands-on experience in real-world projects, including a company website, I bring practical knowledge and a constant drive to improve. <br> Currently studying Software Engineering and always pushing my skills to the next level.",
+    about: "I first discovered programming during the pandemic, and even starting small, I quickly realized it was something different — something I genuinely enjoyed. <br><br> For a while, I had to step away to focus on work, but the desire to come back never left. Programming stayed in my mind as something I truly wanted for my future. <br><br> When I found out I was going to be a father, I made the decision to fully commit. I returned to studying, started a Software Engineering degree, and began focusing on building a real career in tech. <br><br> I developed and sold my first project, and that was the moment everything clicked. Turning ideas into reality — and even exceeding expectations — is what I want to do. <br><br> Today, I continue to grow as a front-end developer, always learning, improving my skills, and building better solutions every day.",
+    aboutsub: "I turn ideas into real, functional experiences.",
+    porttitle: "My Work",
+    portsubtitle: "Some of the projects I've built, focusing on performance, usability, and real-world solutions.",
+    live: "Live",
+    code: "Code",
+    portprojtitle: "HS Imãs",
+    portdescription: "A responsive website built for a real client, focused on performance and usability.",
+    servicessubtitle: "Services I offer to help build modern and efficient web experiences. <br> Focused on performance, usability, and real-world results.",
+    servicefrontend: "Front-end Development",
+    servicefrontenddesc: "Creating intuitive, visually appealing interfaces that provide a smooth and engaging user experience across all devices.",
+    servicewebdev: "Web Development",
+    servicewebdevdesc: "I build fast, scalable, and high-performance web applications focused on real-world results.",
+    servicelandingpages: "Landing Pages",
+    servicelandingpagesdesc: "Designing and developing conversion-focused landing pages that help turn visitors into customers.",
+    serviceproblemsolving: "Problem Solving",
+    serviceproblemsolvingdesc: "Strong focus on solving real-world problems through code, turning ideas into functional and reliable solutions.",
+    servicesmini: "Focused on performance, clean code, and real-world results.",
+    techstack: "Tech Stack",
+    tools: "Tools",
+    contacttitle: "Let’s Build Something Great Together",
+    contactsubtitle: "I’m available for freelance projects and new opportunities.",
+    contactsend: "Send Message"
+  },
+
+  pt: {
+    logo: "Portifólio",
+    navh: "Menu",
+    nava: "Sobre",
+    navp: "Portfólio",
+    navs: "Serviços",
+    navc: "Contato",
+    title: "Alexsander Gianasi",
+    subtitle: "Sou um",
+    roles: [
+      "Desenvolvedor JavaScript",
+      "Desenvolvedor Front-end",
+      "Resolvedor de Problemas",
+      "Estudante de Engenharia de Software"
+    ],
+    description: "Desenvolvedor front-end focado na criação de paginas web, modernas e centradas no usuário. <br> Utilizo JavaScript para criar interfaces intuitivas e de alto desempenho que combinam design limpo com usabilidade real. <br> Com experiência prática em projetos reais, incluindo o website de uma empresa, trago conhecimento prático e uma busca constante por aprimoramento. <br> Atualmente, estudo Engenharia de Software e estou sempre aprimorando minhas habilidades.",
+    about: "Descobri a programação durante a pandemia e, mesmo começando aos poucos, logo percebi que era algo diferente — algo que eu realmente gostava. <br><br> Por um tempo, precisei me afastar para me concentrar no trabalho, mas a vontade de voltar nunca desapareceu. A programação permaneceu em meus pensamentos como algo que eu realmente queria para o meu futuro. <br><br> Quando descobri que seria pai, decidi me dedicar totalmente. Voltei a estudar, comecei uma graduação em Engenharia de Software e comecei a me concentrar em construir uma carreira sólida na área de tecnologia. <br><br> Desenvolvi e vendi meu primeiro projeto, e foi nesse momento que tudo fez sentido. Transformar ideias em realidade — e até mesmo superar expectativas — é o que eu quero fazer. <br><br> Hoje, continuo crescendo como desenvolvedor front-end, sempre aprendendo, aprimorando minhas habilidades e criando soluções melhores a cada dia.",
+    aboutsub: "Transformo ideias em experiências reais e funcionais.",
+    porttitle: "Meu Trabalho",
+    portsubtitle: "Alguns dos projetos que desenvolvi, com foco em performance, usabilidade e soluções do mundo real.",
+    live: "Ao vivo",
+    code: "Código",
+    portprojtitle: "HS Imãs",
+    portdescription: "Um site responsivo desenvolvido para um cliente real, com foco em performance e usabilidade.",
+    servicessubtitle: "Serviços que ofereço para ajudar a construir experiências web modernas e eficientes.",
+    servicefrontend: "Desenvolvimento Front-end",
+    servicefrontenddesc: "Criar interfaces intuitivas e visualmente atraentes que proporcionem uma experiência de usuário fluida e envolvente em todos os dispositivos.",
+    servicewebdev: "Desenvolvimento Web",
+    servicewebdevdesc: "Eu desenvolvo aplicações web práticas, escaláveis ​​e de alta performance, focadas em resultados práticos.",
+    servicelandingpages: "Landing Pages",
+    servicelandingpagesdesc: "Criar e desenvolver landing pages focadas em conversão que ajudem a transformar visitantes em clientes.",
+    serviceproblemsolving: "Resolução de Problemas",
+    serviceproblemsolvingdesc: "Foco forte na resolução de problemas do mundo real através do código, transformando ideias em soluções funcionais e confiáveis.",
+    servicesmini: "Focado em desempenho, código limpo e resultados práticos.",
+    techstack: "Tecnologias",
+    tools: "Ferramentas",
+    contacttitle: "Vamos construir algo grandioso juntos.",
+    contactsubtitle: "Estou disponível para projetos freelance e novas oportunidades.",
+    contactsend: "Enviar mensagem"
+  }
+};
+
+let currentLang = "en";
+let texts = translations[currentLang].roles;
 let index = 0;
-const title = document.getElementById("text");
+let title = null;
+let interval = null;
 
 function showText() {
-  // muda o texto
-  title.textContent = texts[index];
+  if (!title) return;
 
-  // fade in
+  title.textContent = texts[index];
   title.style.opacity = 1;
 
-  // espera e faz fade out
   setTimeout(() => {
     title.style.opacity = 0;
   }, 4300);
 
-  // próximo texto
   index = (index + 1) % texts.length;
 }
 
-// loop
-setInterval(showText, 5000);
+function changeLanguage(lang) {
+  currentLang = lang;
 
-// inicia na hora
-showText();
+  // troca texto fixo
+  const subtitle = document.querySelector("[data-i18n='subtitle']");
+  if (subtitle) {
+    subtitle.textContent = translations[lang].subtitle;
+  }
 
-window.addEventListener("scroll", function(){
-  let navbar = document.querySelector('.navbar')
-  navbar.classList.toggle('roll', window.scrollY > 0)
-})
+  // troca textos animados
+  texts = translations[lang].roles;
+  index = 0;
+
+  // reinicia animação
+  clearInterval(interval);
+  showText();
+  interval = setInterval(showText, 5000);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  title = document.getElementById("text");
+
+  changeLanguage("en"); // idioma inicial
+});
