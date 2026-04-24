@@ -1,11 +1,15 @@
-const navLink = document.querySelectorAll('.nav__link');   
 
 function linkAction(){
   /*Active link*/
   navLink.forEach(n => n.classList.remove('active'));
   this.classList.add('active');
 }
-navLink.forEach(n => n.addEventListener('click', linkAction));
+
+window.addEventListener("scroll", function(){
+  let header = document.querySelector('#header')
+  if (!header) return; // evita quebrar se o elemento não existir
+  header.classList.toggle('roll', window.scrollY > 0)
+})
 
 // Translate
 
@@ -114,25 +118,112 @@ function showText() {
 
 function changeLanguage(lang) {
   currentLang = lang;
+  const t = translations[lang];
 
-  // troca texto fixo
-  const subtitle = document.querySelector("[data-i18n='subtitle']");
-  if (subtitle) {
-    subtitle.textContent = translations[lang].subtitle;
-  }
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (t[key] === undefined) return;
 
-  // troca textos animados
-  texts = translations[lang].roles;
+    if (key === "subtitle") {
+      el.textContent = t[key];
+    } else {
+      el.innerHTML = t[key];
+    }
+  });
+
+  texts = t.roles;
   index = 0;
-
-  // reinicia animação
   clearInterval(interval);
-  showText();
-  interval = setInterval(showText, 5000);
+
+  // só chama showText se o title já foi atribuído
+  if (title) {
+    showText();
+    interval = setInterval(showText, 5000);
+  }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  title = document.getElementById("text");
+function makeFlagUS() {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+  svg.setAttribute("width","28"); svg.setAttribute("height","20"); svg.setAttribute("viewBox","0 0 28 20");
+  svg.style.borderRadius = "3px";
+  svg.innerHTML = `
+    <rect width="28" height="20" fill="#B22234"/>
+    <rect y="1.54" width="28" height="1.54" fill="white"/>
+    <rect y="4.61" width="28" height="1.54" fill="white"/>
+    <rect y="7.69" width="28" height="1.54" fill="white"/>
+    <rect y="10.77" width="28" height="1.54" fill="white"/>
+    <rect y="13.85" width="28" height="1.54" fill="white"/>
+    <rect y="16.92" width="28" height="1.54" fill="white"/>
+    <rect width="11" height="10.77" fill="#3C3B6E"/>`;
+  return svg;
+}
 
-  changeLanguage("en"); // idioma inicial
+function makeFlagBR() {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+  svg.setAttribute("width","28"); svg.setAttribute("height","20"); svg.setAttribute("viewBox","0 0 28 20");
+  svg.style.borderRadius = "3px";
+  svg.innerHTML = `
+    <rect width="28" height="20" fill="#009C3B"/>
+    <polygon points="14,2 26,10 14,18 2,10" fill="#FFDF00"/>
+    <circle cx="14" cy="10" r="4.2" fill="#002776"/>
+    <path d="M10.2 8.5 Q14 7 17.8 8.5" stroke="white" stroke-width="0.8" fill="none"/>`;
+  return svg;
+}
+
+const flagMap = { en: makeFlagUS, pt: makeFlagBR };
+let dropdownOpen = false;
+
+function renderFlags() {
+  document.getElementById('selectedFlag').innerHTML = '';
+  document.getElementById('selectedFlag').appendChild(flagMap[currentLang]());
+  document.getElementById('flagUS').innerHTML = '';
+  document.getElementById('flagUS').appendChild(makeFlagUS());
+  document.getElementById('flagBR').innerHTML = '';
+  document.getElementById('flagBR').appendChild(makeFlagBR());
+}
+
+function toggleDropdown() {
+  dropdownOpen = !dropdownOpen;
+  document.getElementById('langDropdown').classList.toggle('open', dropdownOpen);
+  document.getElementById('arrow').classList.toggle('open', dropdownOpen);
+}
+
+function selectLang(lang) {
+  changeLanguage(lang);
+  dropdownOpen = false;
+  document.getElementById('langDropdown').classList.remove('open');
+  document.getElementById('arrow').classList.remove('open');
+  document.getElementById('selectedFlag').innerHTML = '';
+  document.getElementById('selectedFlag').appendChild(flagMap[lang]());
+}
+
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('langSelector').contains(e.target)) {
+    dropdownOpen = false;
+    document.getElementById('langDropdown').classList.remove('open');
+    document.getElementById('arrow').classList.remove('open');
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  title = document.getElementById("text"); // ✅ atribui primeiro
+  showText();                              // ✅ depois mostra o texto
+  interval = setInterval(showText, 5000);  // ✅ inicia o loop
+  changeLanguage("en");                    // ✅ aplica traduções
+  renderFlags();                  
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav__link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(n => n.classList.remove('active'));
+        const active = document.querySelector(`.nav__link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 }); // 40% da seção visível já ativa o link
+
+  sections.forEach(s => observer.observe(s));
 });

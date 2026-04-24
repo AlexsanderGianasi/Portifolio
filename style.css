@@ -84,6 +84,78 @@ a{
     color: #8b1ff8;
 }
 
+.lang-selector { 
+  position: relative; 
+  display: flex;
+  align-items: center;
+}
+
+.lang-selected {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: background 0.2s;
+  user-select: none;
+}
+.lang-selected:hover { 
+  background: rgba(255,255,255,0.1);
+ }
+
+.arrow {
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+.arrow.open { 
+  transform: rotate(180deg); 
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 100%;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 999;
+}
+.lang-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.lang-option {
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+.lang-option:hover { 
+  background: rgba(255,255,255,0.08);
+}
+
+#selectedFlag {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+}
+
 .inicio{
     display: flex;
     align-items: center;
