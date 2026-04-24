@@ -15,6 +15,9 @@
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/4.0.0/uicons-brands/css/uicons-brands.css"
     />
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
     <title>Alexsander Gianasi</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
@@ -37,6 +40,13 @@
           <a data-i18n="navc" href="#contact" class="nav__link">Contact</a>
         </li>
       </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <div class="lang-selector" id="langSelector">
         <div class="lang-selected" id="langSelected" onclick="toggleDropdown()">
           <div id="selectedFlag"></div>
@@ -703,14 +713,16 @@
 
         <div class="contact-card">
           <form class="contact-form" id="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="text" id="name" name="name" placeholder="Your Name" required />
             <input
+              id="email"
               type="email"
               name="email"
               placeholder="Your Email"
               required
             />
             <textarea
+              id="message"
               name="message"
               placeholder="Your Message"
               required
@@ -721,6 +733,11 @@
         </div>
       </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <div id="form-overlay" style="display:none;">
+      <div id="form-overlay-box">
+        <div id="overlay-icon"></div>
+        <p id="overlay-msg"></p>
+      </div>
+    </div>
   </body>
 </html>

@@ -15,6 +15,9 @@ window.addEventListener("scroll", function(){
 
 const translations = {
   en: {
+    sending: "Sending...",
+    sent: "Message sent!",
+    senterror: "Error sending. Try again.",
     logo: "Portifolio",
     navh: "Home",
     nava: "About",
@@ -56,6 +59,9 @@ const translations = {
   },
 
   pt: {
+    sending: "Enviando...",
+    sent: "Mensagem enviada!",
+    senterror: "Erro ao enviar. Tente novamente.",
     logo: "Portifólio",
     navh: "Menu",
     nava: "Sobre",
@@ -226,4 +232,62 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.4 }); // 40% da seção visível já ativa o link
 
   sections.forEach(s => observer.observe(s));
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('.navbar ul');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+  });
+
+  // Fecha o menu ao clicar em um link
+  document.querySelectorAll('.nav__link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navMenu.classList.remove('open');
+    });
+  });
+});
+
+emailjs.init("7OMytcdtO0Or0HZEn");
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const overlay = document.getElementById('form-overlay');
+  const icon    = document.getElementById('overlay-icon');
+  const msg     = document.getElementById('overlay-msg');
+  const t       = translations[currentLang];
+
+  // Mostra overlay de envio
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => overlay.classList.add('visible'));
+  icon.className = 'loading';
+  icon.textContent = '';
+  msg.textContent = t.sending;
+
+  emailjs.sendForm('service_rk54nfk', 'template_oa9mpf3', this)
+    .then(() => {
+      icon.className = 'success';
+      icon.textContent = '✓';
+      msg.textContent = t.sent;
+      document.getElementById('contact-form').reset(); // limpa o formulário
+
+      setTimeout(() => {
+        overlay.classList.remove('visible');
+        setTimeout(() => overlay.style.display = 'none', 300);
+      }, 2500);
+    })
+    .catch(() => {
+      icon.className = 'error';
+      icon.textContent = '✕';
+      msg.textContent = t.senterror;
+
+      setTimeout(() => {
+        overlay.classList.remove('visible');
+        setTimeout(() => overlay.style.display = 'none', 300);
+      }, 2500);
+    });
 });
