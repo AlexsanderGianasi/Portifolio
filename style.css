@@ -365,7 +365,7 @@ a{
 }
 
 #about-text{
-    width: 30vw;
+    width: 50vw;
 }
 
 #about-sub-text{
@@ -428,6 +428,10 @@ a{
 
 .portfolio-card:hover img {
   transform: scale(1.08);
+}
+
+.card-content span{
+  color: var(--text-secondary);
 }
 
 .card-overlay {
@@ -897,7 +901,7 @@ textarea {
   }
 
   #about-text {
-    width: 40vw;
+    width: 70vw;
   }
 
   .contact-info {
