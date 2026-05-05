@@ -21,6 +21,17 @@ html, body{
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: var(--text);
+  animation: mudarCor 0.1s infinite;
+  animation-delay: 1s;
+}
+
+@keyframes mudarCor {
+  0% { background-color: var(--bg); }
+  100% { background-color: var(--bg); }
+}
+
 a{
     text-decoration: none;
     color: #fff;
